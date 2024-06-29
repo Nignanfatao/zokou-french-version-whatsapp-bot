@@ -26,13 +26,13 @@
 
 
 # Utiliser une image de base officielle de Node.js
-FROM node:14
+FROM node:lts-buster
 
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /usr/src/app
 
 # Copier le fichier package.json et package-lock.json
-COPY package*.json ./
+COPY package.json .
 
 # Installer les dépendances
 run npm install -g npm@10.2.4
@@ -44,7 +44,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Exposer le port sur lequel l'application tourne
-EXPOSE 3000
+EXPOSE 8000
 
 # Commande pour lancer l'application
 CMD ["npm","run","clever"]
