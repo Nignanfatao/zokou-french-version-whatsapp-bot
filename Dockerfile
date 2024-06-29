@@ -35,9 +35,9 @@ WORKDIR /usr/src/app
 COPY package.json .
 
 # Installer les dépendances
-run npm install -g npm@10.2.4
-RUN npm install pm2 -g
-RUN npm install --legacy-peer-deps
+#run yarn install -g npm@10.2.4
+#RUN yarn install pm2 -g
+#RUN ninstall --legacy-peer-deps
 
 
 # Copier le reste des fichiers de l'application
@@ -47,5 +47,5 @@ COPY . .
 EXPOSE 8000
 
 # Commande pour lancer l'application
-CMD ["npm","run","clever"]
+CMD ["node","index.js"]
 
