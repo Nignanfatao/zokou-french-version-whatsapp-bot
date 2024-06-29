@@ -1,25 +1,51 @@
-FROM node:lts-buster
+#FROM node:lts-buster
 
-RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  npm i pm2 -g && \
-  rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && \
+#  apt-get install -y \
+#  ffmpeg \
+#  imagemagick \
+#  webp && \
+#  apt-get upgrade -y && \
+#  npm i pm2 -g && \
+# rm -rf /var/lib/apt/lists/*
   
-RUN git clone https://github.com/FaouzKK/zokou-french-version-whatsapp-bot  /root/my_app
-WORKDIR /root/my_app/
+#RUN git clone https://github.com/FaouzKK/zokou-french-version-whatsapp-bot  /root/my_app
+#WORKDIR /root/my_app/
 
 
-COPY package.json .
+#COPY package.json .
+#run npm install -g npm@10.2.4
+#RUN npm install pm2 -g
+#RUN npm install --legacy-peer-deps
+
+#COPY . .
+
+#EXPOSE 8000
+
+#CMD ["npm","run","clever"]
+
+
+# Utiliser une image de base officielle de Node.js
+FROM node:14
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /usr/src/app
+
+# Copier le fichier package.json et package-lock.json
+COPY package*.json ./
+
+# Installer les dépendances
 run npm install -g npm@10.2.4
 RUN npm install pm2 -g
 RUN npm install --legacy-peer-deps
 
+
+# Copier le reste des fichiers de l'application
 COPY . .
 
-EXPOSE 8000
+# Exposer le port sur lequel l'application tourne
+EXPOSE 3000
 
+# Commande pour lancer l'application
 CMD ["npm","run","clever"]
+
