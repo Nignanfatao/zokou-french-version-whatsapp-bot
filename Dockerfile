@@ -44,7 +44,7 @@ COPY package.json .
 COPY . .
 
 # Exposer le port sur lequel l'application tourne
-EXPOSE 8000
+EXPOSE 5000
 
 # Commande pour lancer l'application
 CMD ["node","index.js"]
